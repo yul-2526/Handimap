@@ -43,9 +43,24 @@
 
 <%@ include file="../member/top.jsp"%>
 <br><br>
+<%@include file="/WEB-INF/common/common.jsp"%>
 
-<a href="subwayJungbo.sb">역 출구 정보 불러오기</a>
-<a href="subwayWheelJungbo.sb">휠체어 정보 불러오기</a>
+<table>
+	<c:forEach items="${subwayLiftList }" var="subwayLift">
+			<tr>
+				<td>${subwayLift.lnCd }</td>
+				<td>${subwayLift.mvContDtl }</td>
+				<td>${subwayLift.mvDst }</td>
+				<td>${subwayLift.mvPathDvCd }</td>
+				<td>${subwayLift.mvPathDvNm }</td>
+				<td>${subwayLift.mvPathMgNo }</td>
+				<td>${subwayLift.mvTpOrdr }</td>
+				<td>${subwayLift.railOprIsttCd }</td>
+				<td>${subwayLift.stinCd }</td>
+			</tr>
+	</c:forEach>
+</table>
+
 
 <br><br><br>
 <%@ include file="../member/bottom.jsp"%>
