@@ -31,7 +31,7 @@
         <li><a href="main.wt" class="nav-link px-2 link-dark">&nbsp;&nbsp;날씨&nbsp;&nbsp;</a></li>
         <li><a href="main.wh" class="nav-link px-2 link-dark">&nbsp;&nbsp;휠체어&nbsp;&nbsp;</a></li>
         <li><a href="#" class="nav-link px-2 link-dark">&nbsp;&nbsp;병원&nbsp;&nbsp;</a></li>
-        <li><a href="#" class="nav-link px-2 link-dark">&nbsp;&nbsp;지하철</a></li>
+        <li><a href="main.sb" class="nav-link px-2 link-dark">&nbsp;&nbsp;지하철</a></li>
       </ul>
 
       <div class="col-md-3 text-end">

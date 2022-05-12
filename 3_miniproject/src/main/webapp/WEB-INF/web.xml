@@ -96,4 +96,19 @@
 		<servlet-name>wheel</servlet-name>
 		<url-pattern>*.wh</url-pattern>
 	</servlet-mapping>
+
+		<servlet>
+		<servlet-name>subway</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>/WEB-INF/spring/appServlet/subway-servlet.xml</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+</servlet>
+	<servlet-mapping>
+		<servlet-name>subway</servlet-name>
+		<url-pattern>*.sb</url-pattern>
+	</servlet-mapping>
+
 </web-app>
