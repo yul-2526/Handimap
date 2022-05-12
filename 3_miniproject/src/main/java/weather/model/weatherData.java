@@ -11,6 +11,8 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -27,9 +29,19 @@ public class weatherData {
 	
 	public ArrayList<weatherBean> getVillageWeather() throws IOException, ParseException  {
 		ArrayList<weatherBean> datalist = new ArrayList<weatherBean>();
+
+		//현재날짜
 		DateFormat sdFormat = new SimpleDateFormat("yyyyMMdd");
 		Date nowDate = new Date();
 		String tempDate = sdFormat.format(nowDate);
+
+		//현재시간기준 basetime
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HHmm");
+		LocalTime timeset=LocalTime.now();
+		String nowTime=timeset.format(formatter);
+		
+		System.out.println(nowTime);
+
 		
 		// JSON데이터를 요청하는 URLstr을 만듭니다.
 		String apiUrl = "http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst";
@@ -43,7 +55,7 @@ public class weatherData {
 		urlBuilder.append("?" + URLEncoder.encode("serviceKey", "UTF-8") + "=MbjQqZXxEGtJU04AVdLxb/S5iNdgPqNryD66KP2SDMJGJsfl9f3lPb0x9xgqSlc5Mf/TDxdzfrRjacwCzrR2zA==");
         urlBuilder.append("&" + URLEncoder.encode("pageNo","UTF-8") + "=" + URLEncoder.encode("1", "UTF-8")); /*페이지번호*/
         urlBuilder.append("&" + URLEncoder.encode("numOfRows","UTF-8") + "=" + URLEncoder.encode("1000", "UTF-8")); /*한 페이지 결과 수*/
-        urlBuilder.append("&" + URLEncoder.encode("dataType","UTF-8") + "=" + URLEncoder.encode("XML", "UTF-8")); /*요청자료형식(XML/JSON) Default: XML*/
+        urlBuilder.append("&" + URLEncoder.encode("dataType","UTF-8") + "=" + URLEncoder.encode("JSON", "UTF-8")); /*요청자료형식(XML/JSON) Default: XML*/
         urlBuilder.append("&" + URLEncoder.encode("base_date","UTF-8") + "=" + URLEncoder.encode(baseDate, "UTF-8")); //현재 날짜를 호출해 그 날짜에 보도딘 데이터를 불러옴
         urlBuilder.append("&" + URLEncoder.encode("base_time","UTF-8") + "=" + URLEncoder.encode("0200", "UTF-8")); /*06시 발표(정시단위) */
         urlBuilder.append("&" + URLEncoder.encode("nx","UTF-8") + "=" + URLEncoder.encode("55", "UTF-8")); /*예보지점의 X 좌표값*/
@@ -72,7 +84,9 @@ public class weatherData {
 		rd.close();
 		conn.disconnect();
 		String result = sb.toString();
-		System.out.println("결과: " + result);
+		
+		//System.out.println("결과:"+result);
+		
 		// 문자열을 JSON으로 파싱합니다. 마지막 배열형태로 저장된 데이터까지 파싱해냅니다.
 		JSONParser jsonParser = new JSONParser();
 		JSONObject jsonObj = (JSONObject) jsonParser.parse(result);
@@ -89,6 +103,7 @@ public class weatherData {
 		String time = "";
 		
 
+		
 		for (int i = 0; i < parse_item.size(); i++) {
 			obj = (JSONObject) parse_item.get(i); // 해당 item을 가져옵니다.
 
@@ -98,7 +113,7 @@ public class weatherData {
 			category = (String) obj.get("category"); // item에서 카테고리를 검색해옵니다.
 			// 검색한 카테고리와 일치하는 변수에 문자형으로 데이터를 저장합니다.
 			// 데이터들이 형태가 달라 문자열로 통일해야 편합니다. 꺼내서 사용할때 다시변환하는게 좋습니다.
-
+			System.out.println("카테고리:"+category);
 			switch (category) {
 			case "POP":
 				wb.getPop().equals((obj.get("fcstValue")).toString());
@@ -114,6 +129,8 @@ public class weatherData {
 				break;
 			case "WSD":
 				wb.getWsd().equals((obj.get("fcstValue")).toString());
+				break;
+			default:
 				break;
 			}
 			if (!day.equals(fcstDate.toString())) {
@@ -135,7 +152,7 @@ public class weatherData {
 			String tmp = (String)obj.get("tmp");
 			String wsd = (String)obj.get("wsd");
 
-			weatherBean weatherlist=new weatherBean(0, null,  baseDate1,  baseTime, null, null, pop,
+			weatherBean weatherlist=new weatherBean(baseDate1,  baseTime, "55", "127", pop,
 					 reh,  sky,  tmp,  wsd);
 			datalist.add(weatherlist);
 		}

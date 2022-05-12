@@ -4,8 +4,6 @@ import java.sql.Date;
 
 public class weatherBean {
 
-	private int seq;
-	private Date inserttime;
 	private String baseDate;
 	private String baseTime;
 	//private String category;
@@ -22,11 +20,9 @@ public class weatherBean {
 	
 	public weatherBean() {
 	}
-	public weatherBean(int seq, Date inserttime, String baseDate, String baseTime, String nx, String ny, String pop,
+	public weatherBean(String baseDate, String baseTime, String nx, String ny, String pop,
 			String reh, String sky, String tmp, String wsd) {
 		super();
-		this.seq = seq;
-		this.inserttime = inserttime;
 		this.baseDate = baseDate;
 		this.baseTime = baseTime;
 		this.nx = nx;
@@ -37,18 +33,7 @@ public class weatherBean {
 		this.tmp = tmp;
 		this.wsd = wsd;
 	}
-	public int getSeq() {
-		return seq;
-	}
-	public void setSeq(int seq) {
-		this.seq = seq;
-	}
-	public Date getInserttime() {
-		return inserttime;
-	}
-	public void setInserttime(Date inserttime) {
-		this.inserttime = inserttime;
-	}
+
 	public String getBaseDate() {
 		return baseDate;
 	}
