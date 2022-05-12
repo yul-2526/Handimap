@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="weather.WeatherBean">
+	
+	<insert id="InsertBohum">
+		insert into weather
+		values(#{inserttime},#{baseDate},#{baseTime},
+		#{nx},#{ny},#{pop},#{reh},#{sky},#{tmp},#{wsd})
+	</insert>
+	
+	<select id="GetAllTotalCount" resultType="int">
+		select max(rnk)
+		from (select cmpyCd ,cmpyNm, ptrn ,bohum.age age ,prdNm , rank() over(order by cmpyCd) as rnk
+		from bohum inner join cinfo
+		on cmpyNm = cname
+		group by cmpyCd,cmpyNm, ptrn , age ,prdNm)
+	</select>
+	
+	<select id="GetAllBoteArr" resultType="MyWeather">
+		select baseDate, baseTime, pop, reh, sky, tmp, wsd from weather 
+	</select>
+</mapper>
