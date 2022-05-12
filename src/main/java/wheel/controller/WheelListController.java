@@ -22,7 +22,8 @@ public class WheelListController {
 		System.out.println(1);
 		
 		try {
-			System.out.println(wdao.getList());
+			String list = wdao.getList();
+			System.out.println("list : "+list);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
