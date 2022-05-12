@@ -6,7 +6,9 @@
 <title>전동 휠체어 충전소</title>
 </head>
 <body>
+<%@ include file="../member/top.jsp"%>
+<br><br>
 
 
-</body>
-</html>
+<br><br><br>
+<%@ include file="../member/bottom.jsp"%>
