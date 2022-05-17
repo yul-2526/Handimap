@@ -56,10 +56,10 @@ public class SubwayWheelApi {
 		try {
 			StringBuilder urlBuilder = new StringBuilder("http://openapi.kric.go.kr/openapi/vulnerableUserInfo/stationWheelchairLiftMovement"); /*URL*/
 			urlBuilder.append("?" + URLEncoder.encode("serviceKey","UTF-8") + "=$2a$10$o6QhwYA3.vnxjtZekJvGf.kaQKnjHADg3aHilTXVMwyMEnTq3mmuO");
-			urlBuilder.append("&" + URLEncoder.encode("format","UTF-8") + "=" + URLEncoder.encode("json", "UTF-8")); /*�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕�뜝占�(xml/json)*/
-			urlBuilder.append("&" + URLEncoder.encode("railOprIsttCd","UTF-8") + "=" + URLEncoder.encode("S1", "UTF-8")); /*�뜝�룞�삕�뜝�룞�삕*/       
-			urlBuilder.append("&" + URLEncoder.encode("lnCd","UTF-8") + "=" + URLEncoder.encode("3", "UTF-8")); /*�뜝�룞�삕�뜝�룞�삕*/       
-			urlBuilder.append("&" + URLEncoder.encode("stinCd","UTF-8") + "=" + URLEncoder.encode("322", "UTF-8")); /*�뜝�룞�삕�뜝�룞�삕*/       
+			urlBuilder.append("&" + URLEncoder.encode("format","UTF-8") + "=" + URLEncoder.encode("json", "UTF-8")); 
+			urlBuilder.append("&" + URLEncoder.encode("railOprIsttCd","UTF-8") + "=" + URLEncoder.encode("S1", "UTF-8"));        
+			urlBuilder.append("&" + URLEncoder.encode("lnCd","UTF-8") + "=" + URLEncoder.encode("3", "UTF-8"));    
+			urlBuilder.append("&" + URLEncoder.encode("stinCd","UTF-8") + "=" + URLEncoder.encode("322", "UTF-8"));      
 			URL url = new URL(urlBuilder.toString());
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 			conn.setRequestMethod("GET");
@@ -113,7 +113,7 @@ public class SubwayWheelApi {
 				System.out.print(stinCd+"\t");
 				
 				SubwayWheelBean subwayWheelBean = new SubwayWheelBean(lnCd, mvContDtl, mvDst, mvPathDvCd, mvPathDvNm,
-						mvPathMgNo, mvTpOrdr, railOprIsttCd, stinCd);
+						mvPathMgNo, mvTpOrdr, railOprIsttCd, stinCd); 
 				suList.add(subwayWheelBean);
 			}
 		} catch (ParseException e) {
@@ -133,5 +133,86 @@ public class SubwayWheelApi {
 			e.printStackTrace();
 		} 
 			return suList;
-	}//getHohumDetail
+	}//getApi
+	public ArrayList<SubwayWheelBean> getApi(String lnCd,String stinCd) {
+		ArrayList<SubwayWheelBean> suList = new ArrayList<SubwayWheelBean>();
+		try {
+			StringBuilder urlBuilder = new StringBuilder("http://openapi.kric.go.kr/openapi/vulnerableUserInfo/stationWheelchairLiftMovement"); /*URL*/
+			urlBuilder.append("?" + URLEncoder.encode("serviceKey","UTF-8") + "=$2a$10$o6QhwYA3.vnxjtZekJvGf.kaQKnjHADg3aHilTXVMwyMEnTq3mmuO");
+			urlBuilder.append("&" + URLEncoder.encode("format","UTF-8") + "=" + URLEncoder.encode("json", "UTF-8")); 
+			urlBuilder.append("&" + URLEncoder.encode("railOprIsttCd","UTF-8") + "=" + URLEncoder.encode("S1", "UTF-8"));        
+			urlBuilder.append("&" + URLEncoder.encode("lnCd","UTF-8") + "=" + URLEncoder.encode(lnCd, "UTF-8"));    
+			urlBuilder.append("&" + URLEncoder.encode("stinCd","UTF-8") + "=" + URLEncoder.encode(stinCd, "UTF-8"));      
+			URL url = new URL(urlBuilder.toString());
+			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+			conn.setRequestMethod("GET");
+			conn.setRequestProperty("Content-type", "application/json");
+			System.out.println("Response code: " + conn.getResponseCode());
+			BufferedReader rd;
+	        InputStreamReader in = new InputStreamReader((InputStream) conn.getContent(), "UTF-8");
+	        if(conn.getResponseCode() >= 200 && conn.getResponseCode() <= 300) {
+	            rd = new BufferedReader(in);
+	        }  else {
+				rd = new BufferedReader(new InputStreamReader(conn.getErrorStream()));
+			}
+			StringBuilder sb = new StringBuilder();
+			String line;
+			while ((line = rd.readLine()) != null) {
+				sb.append(line);
+			}
+			rd.close();
+			conn.disconnect();
+			System.out.println(sb.toString());
+
+			String myData = sb.toString();
+			JSONParser parser = new JSONParser();
+			JSONObject obj = (JSONObject)parser.parse(myData);
+
+			JSONObject jsonObj = (JSONObject)obj;
+			JSONArray jsonBody = (JSONArray)jsonObj.get("body");
+			System.out.println("lnCd \t mvContDtl \t mvDst \t mvPathDvCd \t mvPathDvNm "
+					+ "\t mvPathMgNo \t mvTpOrdr \t railOprIsttCd \t stinCd \t");
+			for(int i=0;i<jsonBody.size();i++) {
+				JSONObject item = (JSONObject)jsonBody.get(i);
+				
+				String mvContDtl = (String)item.get("mvContDtl");
+				String mvDst = (String)item.get("mvDst");
+				String mvPathDvCd = (String)item.get("mvPathDvCd");
+				String mvPathDvNm = (String)item.get("mvPathDvNm");
+				Long mvPathMgNo = (Long)item.get("mvPathMgNo");
+				Long mvTpOrdr = (Long)item.get("mvTpOrdr");
+				String railOprIsttCd = (String)item.get("railOprIsttCd");
+				
+				System.out.print(lnCd+"\t");
+				System.out.print(mvContDtl+"\t");
+				System.out.print(mvDst+"\t");
+				System.out.print(mvPathDvCd+"\t");
+				System.out.print(mvPathDvNm+"\t");
+				System.out.print(mvPathMgNo+"\t");
+				System.out.print(mvTpOrdr+"\t");
+				System.out.print(railOprIsttCd+"\t");
+				System.out.print(stinCd+"\t");
+				
+				SubwayWheelBean subwayWheelBean = new SubwayWheelBean(lnCd, mvContDtl, mvDst, mvPathDvCd, mvPathDvNm,
+						mvPathMgNo, mvTpOrdr, railOprIsttCd, stinCd); 
+				suList.add(subwayWheelBean);
+			}
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (UnsupportedEncodingException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ProtocolException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+			return suList;
+	}//getApi
 }

@@ -44,20 +44,38 @@
 <%@ include file="../member/top.jsp"%>
 <br><br>
 <%@include file="/WEB-INF/common/common.jsp"%>
-
-<table>
+<%
+	String[] class_flag = {"table-light","table-secondary"};
+%>
+<h3>${ subwayLiftList[0].lnCd}호선 ""역 ( ${subwayLiftList[0].stinCd } )</h3>
+<table class="table" border="1" >
+	<tr class="table-dark">
+		<th>이동경로구분코드</th>
+		<th>이동경로구분</th>
+		<th>이동경로관리번호</th>
+		<th>이동유형순서</th>
+		<th>철도운영기관코드</th>
+		<th>상세 이동내용</th>
+	</tr>
+	<c:set value="0" var="before_mvPathDvCd"/>
+	<c:set value="0" var="before_mvPathMgNo"/>
+	<c:set value="<%=class_flag %>" var="class_flag"/>
+	<c:set value="0" var="class_index"/>
+	
 	<c:forEach items="${subwayLiftList }" var="subwayLift">
-			<tr>
-				<td>${subwayLift.lnCd }</td>
-				<td>${subwayLift.mvContDtl }</td>
-				<td>${subwayLift.mvDst }</td>
+	<c:if test="${before_mvPathDvCd!=subwayLift.mvPathDvCd or before_mvPathMgNo!=subwayLift.mvPathMgNo}">
+		<c:set value="${(class_index+1)%2 }" var="class_index"/>
+	</c:if>		
+			<tr class="${class_flag[class_index] }">
 				<td>${subwayLift.mvPathDvCd }</td>
 				<td>${subwayLift.mvPathDvNm }</td>
 				<td>${subwayLift.mvPathMgNo }</td>
 				<td>${subwayLift.mvTpOrdr }</td>
 				<td>${subwayLift.railOprIsttCd }</td>
-				<td>${subwayLift.stinCd }</td>
+				<td>${subwayLift.mvContDtl }</td>
 			</tr>
+			<c:set value="${subwayLift.mvPathDvCd}" var="before_mvPathDvCd"/>
+			<c:set value="${subwayLift.mvPathMgNo}" var="before_mvPathMgNo"/>	
 	</c:forEach>
 </table>
 

@@ -5,7 +5,9 @@ import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import subway.model.SubwayApi;
 import subway.model.SubwayLiftBean;
@@ -19,10 +21,14 @@ public class SubwayWheelJungboController {
 	private final String goPage ="subwayWheelJungbo";
 	
 	@RequestMapping(value=command)
-	public String doAction(HttpServletRequest request) {
+	public String doAction(
+			HttpServletRequest request,
+			@RequestParam(value="false")String lnCd,
+			@RequestParam(value="false")String stinCd) {
 		
 		SubwayWheelApi subwayApi = new SubwayWheelApi();
 		ArrayList<SubwayWheelBean> subwayLiftList = subwayApi.getApi();
+		//ArrayList<SubwayWheelBean> subwayLiftList = subwayApi.getApi(lnCd,stinCd);
 		request.setAttribute("subwayLiftList", subwayLiftList);
 		
 		return goPage;
