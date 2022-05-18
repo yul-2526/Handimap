@@ -14,6 +14,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -24,6 +25,8 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 public class weatherData {
 	
@@ -36,13 +39,42 @@ public class weatherData {
 		String tempDate = sdFormat.format(nowDate);
 
 		//현재시간기준 basetime
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HHmm");
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH");
 		LocalTime timeset=LocalTime.now();
 		String nowTime=timeset.format(formatter);
 		
-		System.out.println(nowTime);
+		String now_baseTime="";
+		if(nowTime.equals("00")||nowTime.equals("01")||nowTime.equals("02")) {
+			now_baseTime="2300";
+			Calendar day = Calendar.getInstance();
+			day.add(Calendar.DATE , -1);
+			String beforeDate = new java.text.SimpleDateFormat("yyyyMMdd").format(day.getTime());
 
+			tempDate=beforeDate;
+		}if(nowTime.equals("05")||nowTime.equals("03")||nowTime.equals("04")) {
+			now_baseTime="0200";
+			
+		}if(nowTime.equals("08")||nowTime.equals("06")||nowTime.equals("07")) {
+			now_baseTime="0500";
+			
+		}if(nowTime.equals("11")||nowTime.equals("09")||nowTime.equals("10")) {
+			now_baseTime="0800";
+			
+		}if(nowTime.equals("14")||nowTime.equals("12")||nowTime.equals("13")) {
+			now_baseTime="1100";
+			
+		}if(nowTime.equals("17")||nowTime.equals("15")||nowTime.equals("16")) {
+			now_baseTime="1400";
+			
+		}if(nowTime.equals("20")||nowTime.equals("18")||nowTime.equals("19")) {
+			now_baseTime="1700";
+			
+		}if(nowTime.equals("21")||nowTime.equals("22")||nowTime.equals("23")) {
+			now_baseTime="2000";
+			
+		}
 		
+		System.out.println("now_baseTime:"+now_baseTime);
 		// JSON데이터를 요청하는 URLstr을 만듭니다.
 		String apiUrl = "http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst";
 
@@ -57,7 +89,7 @@ public class weatherData {
         urlBuilder.append("&" + URLEncoder.encode("numOfRows","UTF-8") + "=" + URLEncoder.encode("1000", "UTF-8")); /*한 페이지 결과 수*/
         urlBuilder.append("&" + URLEncoder.encode("dataType","UTF-8") + "=" + URLEncoder.encode("JSON", "UTF-8")); /*요청자료형식(XML/JSON) Default: XML*/
         urlBuilder.append("&" + URLEncoder.encode("base_date","UTF-8") + "=" + URLEncoder.encode(baseDate, "UTF-8")); //현재 날짜를 호출해 그 날짜에 보도딘 데이터를 불러옴
-        urlBuilder.append("&" + URLEncoder.encode("base_time","UTF-8") + "=" + URLEncoder.encode("0200", "UTF-8")); /*06시 발표(정시단위) */
+        urlBuilder.append("&" + URLEncoder.encode("base_time","UTF-8") + "=" + URLEncoder.encode(now_baseTime, "UTF-8")); /*06시 발표(정시단위) */
         urlBuilder.append("&" + URLEncoder.encode("nx","UTF-8") + "=" + URLEncoder.encode("55", "UTF-8")); /*예보지점의 X 좌표값*/
         urlBuilder.append("&" + URLEncoder.encode("ny","UTF-8") + "=" + URLEncoder.encode("127", "UTF-8")); /*예보지점의 Y 좌표값*/
 	
@@ -85,7 +117,7 @@ public class weatherData {
 		conn.disconnect();
 		String result = sb.toString();
 		
-		//System.out.println("결과:"+result);
+		System.out.println("결과:"+result);
 		
 		// 문자열을 JSON으로 파싱합니다. 마지막 배열형태로 저장된 데이터까지 파싱해냅니다.
 		JSONParser jsonParser = new JSONParser();
@@ -106,58 +138,60 @@ public class weatherData {
 		
 		for (int i = 0; i < parse_item.size(); i++) {
 			obj = (JSONObject) parse_item.get(i); // 해당 item을 가져옵니다.
-
+			boolean flag = false;
 			Object fcstValue = obj.get("fcstValue");
 			Object fcstDate = obj.get("fcstDate");
 			Object fcstTime = obj.get("fcstTime");
 			category = (String) obj.get("category"); // item에서 카테고리를 검색해옵니다.
 			// 검색한 카테고리와 일치하는 변수에 문자형으로 데이터를 저장합니다.
 			// 데이터들이 형태가 달라 문자열로 통일해야 편합니다. 꺼내서 사용할때 다시변환하는게 좋습니다.
-			System.out.println("카테고리:"+category);
+//			System.out.println("카테고리:"+category);
+
 			switch (category) {
 			case "POP":
-				wb.getPop().equals((obj.get("fcstValue")).toString());
+				flag = true;
 				break;
 			case "REH":
-				wb.getReh().equals((obj.get("fcstValue")).toString());
+				flag = true;
 				break;
 			case "SKY":
-				wb.getSky().equals((obj.get("fcstValue")).toString());
+				flag = true;
 				break;
 			case "TMP":
-				wb.getTmp().equals((obj.get("fcstValue")).toString());
+				flag = true;
 				break;
 			case "WSD":
-				wb.getWsd().equals((obj.get("fcstValue")).toString());
+				flag = true;
 				break;
 			default:
 				break;
 			}
-			if (!day.equals(fcstDate.toString())) {
-				day = fcstDate.toString();
-			}
-			if (!time.equals(fcstTime.toString())) {
-				time = fcstTime.toString();
-				System.out.println("데이: "+ day + "  " +"타임: "+ time);
-			}		
-			
-			wb.setBaseDate((obj.get("fcstDate")).toString());
-			wb.setBaseTime((obj.get("fcstTime")).toString());
-			
-			String baseDate1 = (String)obj.get("baseDate");
-			String baseTime = (String)obj.get("baseTime");
-			String pop = (String)obj.get("pop");
-			String reh = (String)obj.get("reh");
-			String sky = (String)obj.get("sky");
-			String tmp = (String)obj.get("tmp");
-			String wsd = (String)obj.get("wsd");
+			if(flag) {
+				if (!day.equals(fcstDate.toString())) {
+					day = fcstDate.toString();
+				}
+				if (!time.equals(fcstTime.toString())) {
+					time = fcstTime.toString();
+					System.out.println("데이: "+ day + "  " +"타임: "+ time);
+				}		
 
-			weatherBean weatherlist=new weatherBean(baseDate1,  baseTime, "55", "127", pop,
-					 reh,  sky,  tmp,  wsd);
-			datalist.add(weatherlist);
+				wb.setBaseDate((obj.get("fcstDate")).toString());
+				wb.setBaseTime((obj.get("fcstTime")).toString());
+
+				String baseDate1 = (String)obj.get("baseDate");
+				String baseTime = (String)obj.get("baseTime");
+				String pop = (String)obj.get("pop");
+				String reh = (String)obj.get("reh");
+				String sky = (String)obj.get("sky");
+				String tmp = (String)obj.get("tmp");
+				String wsd = (String)obj.get("wsd");
+
+				weatherBean weatherlist=new weatherBean(baseDate1,  baseTime, "52", "127", pop,
+						reh,  sky,  tmp,  wsd);
+				datalist.add(weatherlist);
+			}
+
 		}
-		
-		
 		return datalist;
 	}
 }
