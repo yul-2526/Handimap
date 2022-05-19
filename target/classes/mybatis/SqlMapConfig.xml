@@ -8,9 +8,11 @@
 	<typeAliases>
 		<typeAlias type="member.model.MemberBean" alias="MyMember"/>
 		<typeAlias type="weather.model.weatherBean" alias="MyWeather"/>
+		<typeAlias type="subway.model.SubwayBean" alias="mySubwayBean"/>
 	</typeAliases>
 	
 	<mappers>
 		<mapper resource="mybatis/weather.xml" />
+		<mapper resource="mybatis/subway.xml" />
 	</mappers>
 </configuration>

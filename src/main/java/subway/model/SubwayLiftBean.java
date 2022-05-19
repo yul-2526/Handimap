@@ -1,92 +1,92 @@
 package subway.model;
 
 public class SubwayLiftBean {
-	private String TYPE;//	노드링크 유형	
-	private String NODE_WKT;//		노드 WKT	(좌표)
-	private String NODE_ID;//		노드 ID	
-	private String NODE_CODE;//		노드 유형 코드
-	private String SGG_CD;//		시군구코드	
-	private String SGG_NM;//		시군구명	
-	private String EMD_CD;//		읍면동코드	
-	private String EMD_NM;//		읍면동명	
-	private String SW_CD;//		지하철역코드
-	private String SW_NM;//		지하철역명
+	private String type;//	노드링크 유형	
+	private String node_wkt;//		노드 WKT	(좌표)
+	private String node_id;//		노드 ID	
+	private String node_code;//		노드 유형 코드
+	private String sgg_cd;//		시군구코드	
+	private String sgg_nm;//		시군구명	
+	private String emd_cd;//		읍면동코드	
+	private String emd_nm;//		읍면동명	
+	private String sw_cd;//		지하철역코드
+	private String sw_nm;//		지하철역명
 	public SubwayLiftBean() {
 		super();
 	}
-	public SubwayLiftBean(String tYPE, String nODE_WKT, String nODE_ID, String nODE_CODE, String sGG_CD, String sGG_NM,
-			String eMD_CD, String eMD_NM, String SW_CD, String sW_NM) {
+	public SubwayLiftBean(String type, String node_wkt, String node_id, String node_code, String sgg_cd, String sgg_nm,
+			String emd_cd, String emd_nm, String sw_cd, String sw_nm) {
 		super();
-		this.TYPE = tYPE;
-		this.NODE_WKT = nODE_WKT;
-		this.NODE_ID = nODE_ID;
-		this.NODE_CODE = nODE_CODE;
-		this.SGG_CD = sGG_CD;
-		this.SGG_NM = sGG_NM;
-		this.EMD_CD = eMD_CD;
-		this.EMD_NM = eMD_NM;
-		this.SW_CD = SW_CD;
-		this.SW_NM = sW_NM;
+		this.type = type;
+		this.node_wkt = node_wkt;
+		this.node_id = node_id;
+		this.node_code = node_code;
+		this.sgg_cd = sgg_cd;
+		this.sgg_nm = sgg_nm;
+		this.emd_cd = emd_cd;
+		this.emd_nm = emd_nm;
+		this.sw_cd = sw_cd;
+		this.sw_nm = sw_nm;
 	}
-	public String getTYPE() {
-		return TYPE;
+	public String getType() {
+		return type;
 	}
-	public void setTYPE(String tYPE) {
-		this.TYPE = tYPE;
+	public void setType(String type) {
+		this.type = type;
 	}
-	public String getNODE_WKT() {
-		return NODE_WKT;
+	public String getNode_wkt() {
+		return node_wkt;
 	}
-	public void setNODE_WKT(String nODE_WKT) {
-		this.NODE_WKT = nODE_WKT;
+	public void setNode_wkt(String node_wkt) {
+		this.node_wkt = node_wkt;
 	}
-	public String getNODE_ID() {
-		return NODE_ID;
+	public String getNode_id() {
+		return node_id;
 	}
-	public void setNODE_ID(String nODE_ID) {
-		this.NODE_ID = nODE_ID;
+	public void setNode_id(String node_id) {
+		this.node_id = node_id;
 	}
-	public String getNODE_CODE() {
-		return NODE_CODE;
+	public String getNode_code() {
+		return node_code;
 	}
-	public void setNODE_CODE(String nODE_CODE) {
-		this.NODE_CODE = nODE_CODE;
+	public void setNode_code(String node_code) {
+		this.node_code = node_code;
 	}
-	public String getSGG_CD() {
-		return SGG_CD;
+	public String getSgg_cd() {
+		return sgg_cd;
 	}
-	public void setSGG_CD(String sGG_CD) {
-		this.SGG_CD = sGG_CD;
+	public void setSgg_cd(String sgg_cd) {
+		this.sgg_cd = sgg_cd;
 	}
-	public String getSGG_NM() {
-		return SGG_NM;
+	public String getSgg_nm() {
+		return sgg_nm;
 	}
-	public void setSGG_NM(String sGG_NM) {
-		this.SGG_NM = sGG_NM;
+	public void setSgg_nm(String sgg_nm) {
+		this.sgg_nm = sgg_nm;
 	}
-	public String getEMD_CD() {
-		return EMD_CD;
+	public String getEmd_cd() {
+		return emd_cd;
 	}
-	public void setEMD_CD(String eMD_CD) {
-		this.EMD_CD = eMD_CD;
+	public void setEmd_cd(String emd_cd) {
+		this.emd_cd = emd_cd;
 	}
-	public String getEMD_NM() {
-		return EMD_NM;
+	public String getEmd_nm() {
+		return emd_nm;
 	}
-	public void setEMD_NM(String eMD_NM) {
-		this.EMD_NM = eMD_NM;
+	public void setEmd_nm(String emd_nm) {
+		this.emd_nm = emd_nm;
 	}
-	public String getSW_CD() {
-		return SW_CD;
+	public String getSw_cd() {
+		return sw_cd;
 	}
-	public void setSW_CD(String SW_CD) {
-		this.SW_CD = SW_CD;
+	public void setSw_cd(String sw_cd) {
+		this.sw_cd = sw_cd;
 	}
-	public String getSW_NM() {
-		return SW_NM;
+	public String getSw_nm() {
+		return sw_nm;
 	}
-	public void setSW_NM(String sW_NM) {
-		this.SW_NM = sW_NM;
+	public void setSw_nm(String sw_nm) {
+		this.sw_nm = sw_nm;
 	}
 	
 }

@@ -46,18 +46,14 @@
 <%@include file="/WEB-INF/common/common.jsp"%>
 
 <table>
-	<c:forEach items="${subwayLiftList }" var="subwayLift">
+	<c:forEach items="${subwayList}" var="subway">
 			<tr>
-				<td>${subwayLift.type }</td>
-				<td>${subwayLift.node_wkt }</td>
-				<td>${subwayLift.node_id }</td>
-				<td>${subwayLift.node_code }</td>
-				<td>${subwayLift.sgg_cd }</td>
-				<td>${subwayLift.sgg_nm }</td>
-				<td>${subwayLift.emd_cd }</td>
-				<td>${subwayLift.emd_nm }</td>
-				<td>${subwayLift.sw_cd }</td>
-				<td>${subwayLift.sw_nm }</td>
+				<td>${subway.rail_opr_istt_cd }</td>
+				<td>${subway.rail_opr_istt_nm }</td>
+				<td>${subway.ln_cd }</td>
+				<td>${subway.ln_nm }</td>
+				<td>${subway.stin_cd }</td>
+				<td>${subway.stin_nm }</td>
 			</tr>
 	</c:forEach>
 </table>

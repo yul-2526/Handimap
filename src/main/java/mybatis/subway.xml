@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="subway.SubwayBean" >
+  	<insert id="InsertSubway">
+  		insert into subway values(#{rail_opr_istt_cd},#{rail_opr_istt_nm},
+		#{ln_cd },#{ln_nm },#{stin_cd },#{stin_nm })
+  	</insert>
+  	<select id="selectSubway" resultType="mySubwayBean">
+  		select * from subway
+  	</select>
+  </mapper>

@@ -23,8 +23,8 @@ public class SubwayWheelJungboController {
 	@RequestMapping(value=command)
 	public String doAction(
 			HttpServletRequest request,
-			@RequestParam(value="false")String lnCd,
-			@RequestParam(value="false")String stinCd) {
+			@RequestParam(value="lnCd",required=false)String lnCd,
+			@RequestParam(value="stinCd",required=false)String stinCd) {
 		
 		SubwayWheelApi subwayApi = new SubwayWheelApi();
 		ArrayList<SubwayWheelBean> subwayLiftList = subwayApi.getApi();

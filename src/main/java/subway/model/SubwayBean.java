@@ -1,84 +1,59 @@
 package subway.model;
 
 public class SubwayBean {
-	private String lnCd;//	선코드	
-	private String mvContDtl;//		상세 이동내용	
-	private String mvDst;//		이동거리	
-	private String mvPathDvCd;//		이동경로구분코드	
-	private String mvPathDvNm;//		이동경로구분	
-	private String mvPathMgNo;//		이동경로관리번호	
-	private String mvTpOrdr;//		이동유형순서	
-	private String railOprIsttCd;//		철도운영기관코드	
-	private String stinCd;//		역코드
+	private String rail_opr_istt_cd;//		공사코드
+	private String rail_opr_istt_nm;//	공사이름	
+	private String ln_cd;//		라인코드
+	private String ln_nm;//		라인이름
+	private String stin_cd;//		역코드
+	private String stin_nm;//		역이름
 	public SubwayBean() {
 		super();
 	}
-	public SubwayBean(String lnCd, String mvContDtl, String mvDst, String mvPathDvCd, String mvPathDvNm,
-			String mvPathMgNo, String mvTpOrdr, String railOprIsttCd, String stinCd) {
+	public SubwayBean(String rail_opr_istt_cd, String rail_opr_istt_nm, String ln_cd, String ln_nm, String stin_cd,
+			String stin_nm) {
 		super();
-		this.lnCd = lnCd;
-		this.mvContDtl = mvContDtl;
-		this.mvDst = mvDst;
-		this.mvPathDvCd = mvPathDvCd;
-		this.mvPathDvNm = mvPathDvNm;
-		this.mvPathMgNo = mvPathMgNo;
-		this.mvTpOrdr = mvTpOrdr;
-		this.railOprIsttCd = railOprIsttCd;
-		this.stinCd = stinCd;
+		this.rail_opr_istt_cd = rail_opr_istt_cd;
+		this.rail_opr_istt_nm = rail_opr_istt_nm;
+		this.ln_cd = ln_cd;
+		this.ln_nm = ln_nm;
+		this.stin_cd = stin_cd;
+		this.stin_nm = stin_nm;
 	}
-	public String getLnCd() {
-		return lnCd;
+	public String getRail_opr_istt_cd() {
+		return rail_opr_istt_cd;
 	}
-	public void setLnCd(String lnCd) {
-		this.lnCd = lnCd;
+	public void setRail_opr_istt_cd(String rail_opr_istt_cd) {
+		this.rail_opr_istt_cd = rail_opr_istt_cd;
 	}
-	public String getMvContDtl() {
-		return mvContDtl;
+	public String getRail_opr_istt_nm() {
+		return rail_opr_istt_nm;
 	}
-	public void setMvContDtl(String mvContDtl) {
-		this.mvContDtl = mvContDtl;
+	public void setRail_opr_istt_nm(String rail_opr_istt_nm) {
+		this.rail_opr_istt_nm = rail_opr_istt_nm;
 	}
-	public String getMvDst() {
-		return mvDst;
+	public String getLn_cd() {
+		return ln_cd;
 	}
-	public void setMvDst(String mvDst) {
-		this.mvDst = mvDst;
+	public void setLn_cd(String ln_cd) {
+		this.ln_cd = ln_cd;
 	}
-	public String getMvPathDvCd() {
-		return mvPathDvCd;
+	public String getLn_nm() {
+		return ln_nm;
 	}
-	public void setMvPathDvCd(String mvPathDvCd) {
-		this.mvPathDvCd = mvPathDvCd;
+	public void setLn_nm(String ln_nm) {
+		this.ln_nm = ln_nm;
 	}
-	public String getMvPathDvNm() {
-		return mvPathDvNm;
+	public String getStin_cd() {
+		return stin_cd;
 	}
-	public void setMvPathDvNm(String mvPathDvNm) {
-		this.mvPathDvNm = mvPathDvNm;
+	public void setStin_cd(String stin_cd) {
+		this.stin_cd = stin_cd;
 	}
-	public String getMvPathMgNo() {
-		return mvPathMgNo;
+	public String getStin_nm() {
+		return stin_nm;
 	}
-	public void setMvPathMgNo(String mvPathMgNo) {
-		this.mvPathMgNo = mvPathMgNo;
+	public void setStin_nm(String stin_nm) {
+		this.stin_nm = stin_nm;
 	}
-	public String getMvTpOrdr() {
-		return mvTpOrdr;
-	}
-	public void setMvTpOrdr(String mvTpOrdr) {
-		this.mvTpOrdr = mvTpOrdr;
-	}
-	public String getRailOprIsttCd() {
-		return railOprIsttCd;
-	}
-	public void setRailOprIsttCd(String railOprIsttCd) {
-		this.railOprIsttCd = railOprIsttCd;
-	}
-	public String getStinCd() {
-		return stinCd;
-	}
-	public void setStinCd(String stinCd) {
-		this.stinCd = stinCd;
-	}
-	
 }

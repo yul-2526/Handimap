@@ -44,8 +44,9 @@
 <%@ include file="../member/top.jsp"%>
 <br><br>
 
-<a href="subwayJungbo.sb">역 출구 정보 불러오기</a>
+<a href="jungbo.sb">역 출구 정보 불러오기</a>
 <a href="subwayWheelJungbo.sb">휠체어 정보 불러오기</a>
+<a href="jujang.sb">역 정보 엑셀파일 불러오기</a>
 
 <br><br><br>
 <%@ include file="../member/bottom.jsp"%>

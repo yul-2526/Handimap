@@ -13,8 +13,8 @@ import subway.model.SubwayLiftBean;
 
 @Controller
 public class SubwayJungboController {
-	private final String command="subwayJungbo.sb";
-	private final String goPage ="subwayJungbo";
+	private final String command="jungbo.sb";
+	private final String goPage ="jungbo";
 	
 	@RequestMapping(value=command)
 	public String doAction(HttpServletRequest request) {
