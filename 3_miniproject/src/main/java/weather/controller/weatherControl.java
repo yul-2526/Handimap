@@ -20,39 +20,31 @@ import weather.model.weatherData;
 
 @Controller
 public class weatherControl {
-	private final String command = "main.wt";
+	private final String command = "getWeather.wt";
 	private String getPage = "weatherMain";
 
 	@Autowired
 	private weatherDao wDao;
 
+
 	@RequestMapping(value=command)
-	public String doAction() throws IOException, ParseException {
-//
-//			weatherData weatherData = new weatherData();
-//			ArrayList<weatherBean> weatherTestInfoArr = new ArrayList<weatherBean>();
-//			int count = 0;
-//			for(int j=10;j<101;j=j+10) { 
-//				weatherTestInfoArr = weatherData.getVillageWeather();
-//				System.out.println("j"+j);
-//				
-//				for(int i=0;i<weatherTestInfoArr.size();i++) {
-//					weatherBean weatherBean = weatherTestInfoArr.get(i);
-//					int cnt = wDao.insertWeather(weatherBean);
-//					if(cnt>0) {
-//						System.out.println("gga");
-//						count++;
-//					}
-//				}
-//			}
-//		
-//		String url = request.getContextPath()+command;
-//	
-//		List<weatherBean> bohumJujangInfoArr = new ArrayList<weatherBean>();
-//
-//		bohumJujangInfoArr = wDao.selectTodayWeather();
-//	
-//		request.setAttribute("bohumJujangInfoArr",bohumJujangInfoArr);
+	public String doAction(@RequestParam(value="addressRegion", required=false) String step1,
+							@RequestParam(value="addressDo", required=false) String step2) 
+							throws IOException, ParseException {
+
+			weatherData weatherData = new weatherData();
+			ArrayList<weatherBean> weatherTestInfoArr = new ArrayList<weatherBean>();
+			int count = 0;
+			for(int j=10;j<101;j=j+10) { 
+				weatherTestInfoArr = weatherData.getVillageWeather(step1, step2);
+				System.out.println("j"+j);
+				
+				for(int i=0;i<weatherTestInfoArr.size();i++) {
+					weatherBean weatherBean = weatherTestInfoArr.get(i);
+
+				}
+			}
+
 		return getPage;
 	}
 }

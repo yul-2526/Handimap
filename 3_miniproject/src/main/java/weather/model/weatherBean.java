@@ -1,50 +1,41 @@
 package weather.model;
 
-import java.sql.Date;
-
 public class weatherBean {
 
-	private String baseDate;
-	private String baseTime;
-	//private String category;
-	//private String fcstDate;
-	//private String fcstTime;
-	//private String fcstValue;
+	private String step1;
+	private String step2;
+	private String step3;
 	private String nx;
 	private String ny;
-	private String pop;//강수확률
-	private String reh;//습도
-	private String sky;//하늘상태
-	private String tmp;//1시간 기온
-	private String wsd;//풍속
 	
 	public weatherBean() {
-	}
-	public weatherBean(String baseDate, String baseTime, String nx, String ny, String pop,
-			String reh, String sky, String tmp, String wsd) {
 		super();
-		this.baseDate = baseDate;
-		this.baseTime = baseTime;
+	}
+	public weatherBean(String step1, String step2, String step3, String nx, String ny) {
+		super();
+		this.step1 = step1;
+		this.step2 = step2;
+		this.step3 = step3;
 		this.nx = nx;
 		this.ny = ny;
-		this.pop = pop;
-		this.reh = reh;
-		this.sky = sky;
-		this.tmp = tmp;
-		this.wsd = wsd;
 	}
-
-	public String getBaseDate() {
-		return baseDate;
+	public String getStep1() {
+		return step1;
 	}
-	public void setBaseDate(String baseDate) {
-		this.baseDate = baseDate;
+	public void setStep1(String step1) {
+		this.step1 = step1;
 	}
-	public String getBaseTime() {
-		return baseTime;
+	public String getStep2() {
+		return step2;
 	}
-	public void setBaseTime(String baseTime) {
-		this.baseTime = baseTime;
+	public void setStep2(String step2) {
+		this.step2 = step2;
+	}
+	public String getStep3() {
+		return step3;
+	}
+	public void setStep3(String step3) {
+		this.step3 = step3;
 	}
 	public String getNx() {
 		return nx;
@@ -58,36 +49,6 @@ public class weatherBean {
 	public void setNy(String ny) {
 		this.ny = ny;
 	}
-	public String getPop() {
-		return pop;
-	}
-	public void setPop(String pop) {
-		this.pop = pop;
-	}
-	public String getReh() {
-		return reh;
-	}
-	public void setReh(String reh) {
-		this.reh = reh;
-	}
-	public String getSky() {
-		return sky;
-	}
-	public void setSky(String sky) {
-		this.sky = sky;
-	}
-	public String getTmp() {
-		return tmp;
-	}
-	public void setTmp(String tmp) {
-		this.tmp = tmp;
-	}
-	public String getWsd() {
-		return wsd;
-	}
-	public void setWsd(String wsd) {
-		this.wsd = wsd;
-	}
-	
-	
+
+
 }

@@ -25,14 +25,28 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+
 public class weatherData {
 	
-	public ArrayList<weatherBean> getVillageWeather() throws IOException, ParseException  {
+	@Autowired
+	private weatherDao wdao;
+	
+	public ArrayList<weatherBean> getVillageWeather(String step1, String step2) throws IOException, ParseException  {
 		ArrayList<weatherBean> datalist = new ArrayList<weatherBean>();
-
+		HttpHeaders resHeaders = new HttpHeaders(); 
+		//resHeaders.add("Content-Type", "application/json;charset=UTF-8");
+		
+		System.out.println("step1:"+step1);
+		System.out.println("step2:"+step2);
+		
+		//선택한 지역의 x,y좌표 셀렉트
+		String cx=wdao.getNx(step1,step2);
+		String cy=wdao.getNy(step1,step2);
+		
 		//현재날짜
 		DateFormat sdFormat = new SimpleDateFormat("yyyyMMdd");
 		Date nowDate = new Date();
@@ -90,8 +104,8 @@ public class weatherData {
         urlBuilder.append("&" + URLEncoder.encode("dataType","UTF-8") + "=" + URLEncoder.encode("JSON", "UTF-8")); /*요청자료형식(XML/JSON) Default: XML*/
         urlBuilder.append("&" + URLEncoder.encode("base_date","UTF-8") + "=" + URLEncoder.encode(baseDate, "UTF-8")); //현재 날짜를 호출해 그 날짜에 보도딘 데이터를 불러옴
         urlBuilder.append("&" + URLEncoder.encode("base_time","UTF-8") + "=" + URLEncoder.encode(now_baseTime, "UTF-8")); /*06시 발표(정시단위) */
-        urlBuilder.append("&" + URLEncoder.encode("nx","UTF-8") + "=" + URLEncoder.encode("55", "UTF-8")); /*예보지점의 X 좌표값*/
-        urlBuilder.append("&" + URLEncoder.encode("ny","UTF-8") + "=" + URLEncoder.encode("127", "UTF-8")); /*예보지점의 Y 좌표값*/
+        urlBuilder.append("&" + URLEncoder.encode("nx","UTF-8") + "=" + URLEncoder.encode(cx, "UTF-8")); /*예보지점의 X 좌표값*/
+        urlBuilder.append("&" + URLEncoder.encode("ny","UTF-8") + "=" + URLEncoder.encode(cy, "UTF-8")); /*예보지점의 Y 좌표값*/
 	
 		 /* GET방식으로 전송해서 파라미터 받아오기*/
 		URL url = new URL(urlBuilder.toString());
@@ -100,7 +114,7 @@ public class weatherData {
 
 		HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 		conn.setRequestMethod("GET");
-		conn.setRequestProperty("Content-type", "application/json");
+		//conn.setRequestProperty("Content-type", "application/json");
 		System.out.println("Response code: " + conn.getResponseCode());
 		BufferedReader rd;
 		if (conn.getResponseCode() >= 200 && conn.getResponseCode() <= 300) {
@@ -172,11 +186,11 @@ public class weatherData {
 				}
 				if (!time.equals(fcstTime.toString())) {
 					time = fcstTime.toString();
-					System.out.println("데이: "+ day + "  " +"타임: "+ time);
+					//System.out.println("데이: "+ day + "  " +"타임: "+ time);
 				}		
 
-				wb.setBaseDate((obj.get("fcstDate")).toString());
-				wb.setBaseTime((obj.get("fcstTime")).toString());
+//				wb.setBaseDate((obj.get("fcstDate")).toString());
+//				wb.setBaseTime((obj.get("fcstTime")).toString());
 
 				String baseDate1 = (String)obj.get("baseDate");
 				String baseTime = (String)obj.get("baseTime");
@@ -186,9 +200,7 @@ public class weatherData {
 				String tmp = (String)obj.get("tmp");
 				String wsd = (String)obj.get("wsd");
 
-				weatherBean weatherlist=new weatherBean(baseDate1,  baseTime, "52", "127", pop,
-						reh,  sky,  tmp,  wsd);
-				datalist.add(weatherlist);
+				//datalist.add(weatherlist);
 			}
 
 		}

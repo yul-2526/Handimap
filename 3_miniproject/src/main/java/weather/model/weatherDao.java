@@ -41,5 +41,30 @@ public class weatherDao {
 			// TODO: handle exception
 		}	
 		return boteArr;
-	}//selectMyChoochunBohum
+	}//selectTodayWeather
+	
+	public List<weatherBean> selectStep1(){
+		List<weatherBean> step1=new ArrayList<weatherBean>();
+		step1=sqlSessionTemplate.selectList(namespace+".SelectStep1");
+		System.out.println("wdao.selectStep1 성공");
+		return step1;
+	}//selectStep1
+
+	public List<weatherBean> selectStep2(String step1){
+		List<weatherBean> step2=new ArrayList<weatherBean>();
+		step2=sqlSessionTemplate.selectList(namespace+".SelectStep2"+step1);
+		System.out.println("wdao.selectStep2 성공");
+		return step2;
+	}//selectStep2
+
+
+	public String getNx(String step1, String step2) {
+		String cx=sqlSessionTemplate.selectOne(namespace+".GetNx"+step1+step2);
+		return cx;
+	}//getNx
+
+	public String getNy(String step1, String step2) {
+		String cy=sqlSessionTemplate.selectOne(namespace+".GetNy"+step1+step2);
+		return cy;
+	}//getNy
 }

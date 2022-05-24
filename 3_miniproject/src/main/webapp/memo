@@ -1,23 +1,9 @@
 
-drop sequence weather_seq;
-create sequence weather_seq
-	increment by 1
-  	start with 1
-  	minvalue 1
-  	maxvalue 10000
-  	nocache;
-
--- 공지사항 게시판 테이블
-drop table weather cascade constraints;
-create table weather(
-	inserttime varchar2(50),
-	baseDate varchar2(50),
-	baseTime varchar2(50),
+-- 경도위도 테이블
+create table nxny(
+	step1 varchar2(50),
+	step2 varchar2(50),
+	step3 varchar2(50),
 	nx varchar2(50),
-	ny varchar2(50),
-	pop varchar2(50),
-	reh varchar2(50),
-	sky varchar2(50),
-	tmp varchar2(50),
-	wsd varchar2(50)
+	ny varchar2(50)
 );

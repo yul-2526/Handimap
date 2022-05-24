@@ -22,4 +22,20 @@
 	<select id="GetAllBoteArr" resultType="MyWeather">
 		select baseDate, baseTime, pop, reh, sky, tmp, wsd from weather 
 	</select>
+	
+	<select id="SelectStep1" resultType="MyWeather">
+		select distinct step1 from nxny
+	</select>
+	
+	<select id="SelectStep2" resultType="MyWeather">
+		select distinct step2 from nxny where step1=#{step1}
+	</select>
+
+	<select id="GetNx" resultType="MyWeather">
+		select nx from nxny where step1=#{step1} and step2=#{step2} and step3 is null
+	</select>
+	
+	<select id="GetNy" resultType="MyWeather">
+		select ny from nxny where step1=#{step1} and step2=#{step2} and step3 is null
+	</select>
 </mapper>
