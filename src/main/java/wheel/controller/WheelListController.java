@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import wheel.model.WheelAPI;
 import wheel.model.WheelDao;
 
 //by 아영, 전동 휠체어 충전소 list, 20220506
@@ -16,13 +17,12 @@ public class WheelListController {
 	private String getPage = "wheelList";
 	@Autowired
 	WheelDao wdao;
+	WheelAPI wApi = new WheelAPI();
 	
 	@RequestMapping(command)
 	public String doAction() {
-		System.out.println(1);
-		
 		try {
-			String list = wdao.getList();
+			String list = wApi.getList();
 			System.out.println("list : "+list);
 		} catch (IOException e) {
 			e.printStackTrace();
