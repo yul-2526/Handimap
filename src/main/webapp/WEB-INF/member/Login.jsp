@@ -40,7 +40,11 @@
 <br><br>
 <body class="text-center">
 
-	<main class="form-signin"> 
+<main class="form-signin"> 
+
+	<img src="<%=request.getContextPath() %>/resources/로고4.png" width="250px" height="150px">
+	<br><br><br>
+	
 		<form method="post" action="login.tt">
 			<div class="form-floating">
 				<input type="text" class="form-control" id="id" name="id" placeholder="ID">
