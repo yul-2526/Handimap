@@ -10,13 +10,12 @@
 <title>페이지를 찾을 수 없습니다.</title>
 </head>
 <body> 
-<hr>
-<h2>페이지를 찾을 수 없습니다.</h2>
+<br><br> 
 <hr>
 <input type="button" class="btn btn-outline-danger" onClick="javascript:history.back()" value="이전 페이지로" style="margin-left: 46%;">
-<img src="<%=request.getContextPath() %>/resources/6325263.jpg" width="100%"><br>
+<img src="<%=request.getContextPath() %>/resources/5203299.jpg" width="100%"><br>
 <br>
-<a href='https://kr.freepik.com/vectors/computer' style="float: right">Computer 벡터는 storyset - kr.freepik.com가 제작함</a>
+<a href='https://kr.freepik.com/vectors/web'>Web 벡터는 storyset - kr.freepik.com가 제작함</a>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
 </html>

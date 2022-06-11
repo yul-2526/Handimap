@@ -162,7 +162,7 @@
 			<version>2.2.8</version>
 		</dependency> 
 		
-				<!-- 파일 업로드 -->
+		<!-- 파일 업로드 -->
 		<dependency>
 			<groupId>commons-fileupload</groupId>
 			<artifactId>commons-fileupload</artifactId>
@@ -180,6 +180,13 @@
 			<artifactId>json-simple</artifactId>
 			<version>1.1.1</version>
 		</dependency>
+		
+	<!-- BY 아영, 잭슨 -->
+	<dependency>
+		<groupId>org.codehaus.jackson</groupId>
+		<artifactId>jackson-mapper-asl</artifactId>
+		<version>1.9.13</version>
+	</dependency>
 		
 	</dependencies>
     <build>

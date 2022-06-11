@@ -17,7 +17,15 @@
 		border-radius: 50px;
 	}
 	
-</style>   
+</style> 
+<script type="text/javascript">
+		function login(){
+			location.href="login.tt"
+		}
+		function signup(){
+			location.href="signup.tt"
+		}
+	</script>  
 </head> 
 <body> 
   <div class="container">
@@ -35,8 +43,8 @@
       </ul>
 
       <div class="col-md-3 text-end">
-        <button type="button" class="btn me-2 btt">로그인</button>
-        <button type="button" class="btn btt">회원가입</button>
+        <button type="button" class="btn me-2 btt" onclick="login()">로그인</button>
+        <button type="button" class="btn btt" onclick="signup()">회원가입</button>
       </div>
     </header>
   </div>

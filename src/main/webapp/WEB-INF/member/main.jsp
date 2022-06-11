@@ -48,7 +48,7 @@
 </style>
 </head>
 <body>
-<%@ include file="../common/common.jsp"%>
+
 <%@ include file="top.jsp"%>
 <br><br>
 
