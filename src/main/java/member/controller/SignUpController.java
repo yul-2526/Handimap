@@ -10,7 +10,7 @@ public class SignUpController {
 	private final String command = "signup.tt";
 	private String getPage = "SignUp";
 	
-	@RequestMapping(command)
+	@RequestMapping(value=command)
 	public String doAction() {
 		
 		return getPage;
